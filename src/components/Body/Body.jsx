@@ -36,7 +36,7 @@ function Body({ news, totalPages, buttonsArray, setButtonsArray, page, setPage }
           </div>
           {buttonsArray?.map((item, i) => {
             return (
-              <div onClick={() => setPage(item)} className="pagination-button m-1 border rounded" key={i}>
+              <div onClick={() => setPage(item)} className="pagination-button m-1 pt-1 border rounded" key={i}>
                 {item}
               </div>
             );

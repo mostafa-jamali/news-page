@@ -32,7 +32,7 @@
     text-overflow: ellipsis;
     word-wrap: break-word;
     overflow: hidden;
-    max-height: 5em;
+    max-height: 4.5em;
 }
 .news-more {
     color: #878787;
