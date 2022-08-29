@@ -1,0 +1,26 @@
+.theNews {
+    /* height: 400px; */
+}
+.isaco-img{
+    height: 250px;
+    position: relative;
+    overflow: hidden;
+}
+.news-info {
+    margin-top: -50px;
+    width: 85%;
+}
+h4 {
+    font-size: medium;
+}
+.news-exp {
+    font-size: small;
+}
+
+.news-description {
+    font-size: small;
+}
+
+.news-more {
+    font-size: small;
+}
