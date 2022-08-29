@@ -7,11 +7,20 @@ import Col from 'react-bootstrap/Col';
 import '../../styles/body.css';
 
 const API = process.env.REACT_APP_API_URL;
+
 function Body() {
   const [news, setNews] = useState([]);
+  const [perPage, setPerPage] = useState(21);
+  const [totalNews, setTotalNews] = useState(0);
+  const [totalPages, setTotalPages] = useState(0);
+
+  const calculateOfTotalPages = total => {
+    const a = Math.ceil(total / perPage);
+
+    console.log('a :', a);
+  };
 
   const getNewsOfCompany = () => {
-    console.log('API: ', API);
     const requestBody = {
       NextRows: 21,
       Page: 1,
@@ -19,11 +28,16 @@ function Body() {
     axios
       .post(API, requestBody, {})
       .then(res => {
+        // console.log(res.data.Data);
         setNews(res.data.Data.News);
-        // console.log('resp news: ', res.data.Data.News);
+        setTotalNews(res.data.Data.Total);
+        console.log('totalNews :', res.data.Data.Total);
+        console.log('perPage :', perPage);
+
+        calculateOfTotalPages(totalNews);
       })
       .catch(err => {
-        console.log('err:', err);
+        // console.log('err:', err);
       });
   };
   useEffect(() => {
@@ -35,18 +49,16 @@ function Body() {
       {news.length == 0 ? (
         <div>خبر جدیدی وجود ندارد.</div>
       ) : (
-        <Row className='px-5' >
-          {news.map((item, i) => {
+        <Row className="px-5 mx-4">
+          {news.map(item => {
             return (
-              <Col md={4} className="px-4 mb-5" >
-                <TheNews news={item} key={i} />{' '}
+              <Col key={item.Id} md={4} className="px-4 py-2 my-1">
+                <TheNews news={item} />{' '}
               </Col>
             );
           })}
         </Row>
       )}
-
-      <div></div>
     </div>
   );
 }

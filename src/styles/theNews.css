@@ -1,22 +1,44 @@
+.theNews{
+    margin-bottom: 10px;
+}
+
 .isaco-img{
     height: 250px;
     position: relative;
     overflow: hidden;
+    object-fit: cover;
+}
+.news-info-card{
+    position: relative;
 }
 .news-info {
     margin-top: -50px;
     width: 85%;
+    height: 250px;
+    background-color: #fbfbfb;
 }
-.news-title {
+.news-title h3 {
+    color: #21376c;
     font-size: 1rem;
 }
 .news-exp {
+    color: #878787;
     font-size: small;
 }
 .news-description {
+    color: #878787;
     font-size: small;
     text-align: justify !important;
+    text-overflow: ellipsis;
+    word-wrap: break-word;
+    overflow: hidden;
+    max-height: 5em;
 }
 .news-more {
+    color: #878787;
     font-size: small;
+    position: absolute;
+    bottom: 10px;
+    width: 100%;
+    left: 0;
 }
