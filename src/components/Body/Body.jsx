@@ -35,10 +35,10 @@ function Body() {
       {news.length == 0 ? (
         <div>خبر جدیدی وجود ندارد.</div>
       ) : (
-        <Row>
+        <Row className='px-5' >
           {news.map((item, i) => {
             return (
-              <Col md={4}>
+              <Col md={4} className="px-4 mb-5" >
                 <TheNews news={item} key={i} />{' '}
               </Col>
             );
