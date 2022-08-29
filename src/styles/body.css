@@ -10,9 +10,13 @@
     width: 32px;
     height: 32px;
 }
-.pagination-button:hover {
+.pagination-button:hover,
+.pagination-button-previous:hover,
+.pagination-button-next:hover {
     border-color: #1890ff;
+    color: #1890ff;
     transition: all .3s;
+    cursor: pointer;
 }
 
 .pagination-button-previous , .pagination-button-next{
