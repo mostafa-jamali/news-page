@@ -10,31 +10,42 @@ const API = process.env.REACT_APP_API_URL;
 
 function Body() {
   const [news, setNews] = useState([]);
+  const [page, setPage] = useState(1);
   const [perPage, setPerPage] = useState(21);
-  const [totalNews, setTotalNews] = useState(0);
   const [totalPages, setTotalPages] = useState(0);
+  const [buttonsArray, setButtonsArray] = useState([]);
 
   const calculateOfTotalPages = total => {
-    const a = Math.ceil(total / perPage);
-
-    console.log('a :', a);
+    const pages = Math.ceil(total / perPage);
+    setTotalPages(pages);
   };
 
-  const getNewsOfCompany = () => {
+  const totalButton = () => {
+    const total = [];
+    for (let i = 1; i < totalPages + 1; i++) {
+      total.push(i);
+    }
+    setButtonsArray(total);
+    console.log('total :', total);
+    console.log('buttonsArray :', buttonsArray);
+    // return total;
+  };
+  useEffect(() => {
+    totalButton();
+  }, [totalPages]);
+
+  const getNewsOfCompany = page => {
     const requestBody = {
       NextRows: 21,
-      Page: 1,
+      Page: page,
     };
     axios
       .post(API, requestBody, {})
       .then(res => {
         // console.log(res.data.Data);
         setNews(res.data.Data.News);
-        setTotalNews(res.data.Data.Total);
-        console.log('totalNews :', res.data.Data.Total);
-        console.log('perPage :', perPage);
 
-        calculateOfTotalPages(totalNews);
+        calculateOfTotalPages(res.data.Data.Total);
       })
       .catch(err => {
         // console.log('err:', err);
@@ -58,6 +69,26 @@ function Body() {
             );
           })}
         </Row>
+      )}
+
+      {totalPages == 0 ? (
+        <></>
+      ) : (
+        <div className="d-flex justify-content-center text-center w-100" dir="rtl">
+          <div className="d-flex justify-content-between">
+            <div className="pagination-button-next m-1">{'<'}</div>
+            <div className="pagination-button m-1 border rounded">1</div>
+            <div className="pagination-button m-1 border rounded">2</div>
+            <div className="pagination-button m-1 border rounded">3</div>
+            <div className="pagination-button m-1 border rounded">4</div>
+            {/* </div>
+          {totalPages.map((item, i) => {
+            return <div onClick={setPage(i)}>{i}</div>;
+          })}
+          <div> */}
+            <div className="pagination-button-previous m-1">{'>'}</div>
+          </div>
+        </div>
       )}
     </div>
   );
